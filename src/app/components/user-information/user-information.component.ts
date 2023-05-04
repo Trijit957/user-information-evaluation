@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { delay, map } from 'rxjs';
 import { UserInformationService } from './user-information.service';
 
 type UserType = {
@@ -20,6 +20,7 @@ export class UserInformationComponent implements OnInit {
 
   public users: Array<UserType> = new Array();
   public errorMessage: string = '';
+  public isLoading!: boolean;
 
   constructor(
     private readonly userInformationService: UserInformationService
@@ -30,6 +31,7 @@ export class UserInformationComponent implements OnInit {
   }
 
   private getUserInfo() {
+    this.isLoading = true;
     this.userInformationService.getUserInfo()
         .pipe(
           map((response) => {
@@ -46,7 +48,8 @@ export class UserInformationComponent implements OnInit {
             })
             
             return users;
-          })
+          }),
+          delay(500)
         ).subscribe({
             next: (response) => {
               if(response?.length) {
@@ -59,7 +62,9 @@ export class UserInformationComponent implements OnInit {
               this.users = [];
               this.errorMessage = 'User Information not Found';
             },
-            complete: () => { }
+            complete: () => { 
+              this.isLoading = false;
+            }
     })
   }
 

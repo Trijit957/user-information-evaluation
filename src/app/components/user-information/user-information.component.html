@@ -2,7 +2,7 @@
     <p>User Information Table</p>
 </div>
 
-<div class="table-container" *ngIf="users?.length">
+<div class="table-container" *ngIf="users?.length && !isLoading">
     <table>
         <tr>
             <th>Name</th>
@@ -24,6 +24,10 @@
     </table>
 </div>
 
-<div *ngIf="!users?.length">
+<div class="loading" *ngIf="isLoading">
+    <p>{{ 'Loading...' }}</p>
+</div>
+
+<div *ngIf="!users?.length && !isLoading">
     <p errorText>{{ errorMessage }}</p>
 </div>

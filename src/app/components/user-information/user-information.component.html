@@ -1,0 +1,29 @@
+<div class="header">
+    <p>User Information Table</p>
+</div>
+
+<div class="table-container" *ngIf="users?.length">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Company</th>
+        </tr>
+
+        <tr *ngFor="let user of users; trackBy: trackByFunc">
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.company }}</td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="!users?.length">
+    <p errorText>{{ errorMessage }}</p>
+</div>

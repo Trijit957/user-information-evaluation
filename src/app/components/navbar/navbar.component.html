@@ -1,0 +1,14 @@
+<nav class="navbar" *ngIf="navMenuItems?.length">
+    <div class="navbar__menuItems">
+        <label 
+            *ngFor="let menuItem of navMenuItems"
+            [routerLink]="menuItem.route"
+        >
+              {{ menuItem.name }}
+        </label>
+    </div>
+
+    <div class="navbar__date">
+        <label>{{ currentDate }}</label>
+    </div>
+</nav>

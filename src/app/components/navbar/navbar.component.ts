@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
 
   private getCurrentDate(): string {
       let date = new Date().getDate();
-      let monthIndex = new Date().getMonth() + 1;
+      let monthIndex = new Date().getMonth();
       let month = this.months[monthIndex];
       let year = new Date().getFullYear();
 

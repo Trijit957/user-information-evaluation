@@ -61,6 +61,7 @@ export class UserInformationComponent implements OnInit {
             error: () => {
               this.users = [];
               this.errorMessage = 'User Information not Found';
+              this.isLoading = false;
             },
             complete: () => { 
               this.isLoading = false;
